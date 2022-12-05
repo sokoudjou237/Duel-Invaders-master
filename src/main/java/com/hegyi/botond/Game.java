@@ -162,9 +162,9 @@ public class Game extends Canvas {
 		gc.setTextBaseline(VPos.CENTER);
 		gc.setFont(new Font(gc.getFont().getName(), 30));
 
-		gc.fillText("Game over!\nYour score: " + score, WIDTH / 2.0, HEIGHT / 2.0);
+		gc.fillText("Game over!\nPlayer2 score: " + score, WIDTH / 2.0, HEIGHT / 2.0);
 
-		gc.fillText("Game over!\nYour score: " + score, WIDTH / 2.0, HEIGHT / 2.0);
+		gc.fillText("Game over!\nPlayer1 score: " + score, WIDTH / 2.0, HEIGHT / 2.0);
 	}
 
 	public class myTimer extends AnimationTimer {
@@ -183,7 +183,7 @@ public class Game extends Canvas {
 
 			fleet.shoot();
 
-			if (!player.isAlive() && !player2.isAlive()) {
+			if (!player.isAlive() && !player2.isAlive() ) {
 				inGame = false;
 				gameOver(score);
 				this.stop();
@@ -192,12 +192,15 @@ public class Game extends Canvas {
 
 
 			if (fleet.isDestroyed()) {
-				System.out.println("You win");
+				if (score2 > score) {
+					System.out.println("Player1 win");
+				}else{
+					System.out.println("Player2 win");
+				}
 				inGame = false;
 				this.stop();
+
 			}
-
-
 		}
 	}
 }

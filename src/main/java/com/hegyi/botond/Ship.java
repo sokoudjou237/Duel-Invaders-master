@@ -62,6 +62,7 @@ public class Ship extends MovingGameObject implements checker, canShoot {
 		destroyedImage.setPosition(getPositionX(), getPositionY());
 		destroyedImage.setAlive(true);
 		explosionSound.play();
+
 	}
 
 	@Override

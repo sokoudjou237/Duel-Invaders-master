@@ -29,6 +29,7 @@ public class WelcomeController {
 	private void handler(Scene scene, Game game) {
 		scene.setOnKeyPressed(e -> {
 			Ship player = game.getPlayer();
+			Ship player2 = game.getPlayer2();
 			switch (e.getCode()){
 				case RIGHT:
 					if (player.getPositionX() <= game.getWidth()-player.getWidth() && game.isInGame()) {
@@ -45,6 +46,22 @@ public class WelcomeController {
 						player.shoot();
 					}
 					break;
+
+				case D:
+					if (player2.getPositionX() <= game.getWidth()-player2.getWidth() && game.isInGame()) {
+						player2.setMovingRight(true);
+					}
+					break;
+				case Q:
+					if (player2.getPositionX() >= 0 && game.isInGame()) {
+						player2.setMovingLeft(true);
+					}
+					break;
+				case Z:
+					if (game.isInGame()) {
+						player2.shoot2();
+					}
+					break;
 				case ESCAPE:
 					Game.myTimer timer = game.getTimer();
 
@@ -59,42 +76,10 @@ public class WelcomeController {
 			}
 		});
 
-//		scene.setOnKeyPressed(f -> {
-//			Ship player2 = game.getPlayer2();
-//			switch (f.getCode()){
-//				case D:
-//					if (player2.getPositionX() <= game.getWidth()-player2.getWidth() && game.isInGame()) {
-//						player2.setMovingRight(true);
-//					}
-//					break;
-//				case Q:
-//					if (player2.getPositionX() >= 0 && game.isInGame()) {
-//						player2.setMovingLeft(true);
-//					}
-//					break;
-//				case Z:
-//					if (game.isInGame()) {
-//						player2.shoot2();
-//					}
-//					break;
-//				case ESCAPE:
-//					Game.myTimer timer = game.getTimer();
-//
-//					if (game.isInGame()) {
-//						timer.stop();
-//						game.setInGame(false);
-//					} else {
-//						timer.start();
-//						game.setInGame(true);
-//					}
-//					break;
-//			}
-//		});
-
-
 
 		scene.setOnKeyReleased(e -> {
 			MovingGameObject player = game.getPlayer();
+			MovingGameObject player2 = game.getPlayer2();
 			switch (e.getCode()){
 				case RIGHT:
 					player.setMovingRight(false);
@@ -102,20 +87,15 @@ public class WelcomeController {
 				case LEFT:
 					player.setMovingLeft(false);
 					break;
+				case D:
+					player2.setMovingRight(false);
+					break;
+				case Q:
+					player2.setMovingLeft(false);
+					break;
 			}
 		});
 
-//		scene.setOnKeyReleased(f -> {
-//			MovingGameObject player2 = game.getPlayer2();
-//			switch (f.getCode()){
-//				case D:
-//					player2.setMovingRight(false);
-//					break;
-//				case Q:
-//					player2.setMovingLeft(false);
-//					break;
-//			}
-//		});
 	}
 
 
