@@ -15,9 +15,6 @@ public class Game extends Canvas {
 	private Ship player;
 	private Fleet fleet;
 
-	private Ship player2;
-
-	private Fleet fleet2;
 
 	private GameObject background;
 
@@ -26,8 +23,6 @@ public class Game extends Canvas {
 	private boolean inGame;
 
 	private int score = 0;
-
-	private int score2 = 0;
 
 
 	public static double WIDTH, HEIGHT;
@@ -50,9 +45,6 @@ public class Game extends Canvas {
 		return player;
 	}
 
-	public Ship getPlayer2() {
-		return player2;
-	}
 
 	public boolean isInGame() {
 		return inGame;
@@ -77,11 +69,9 @@ public class Game extends Canvas {
 
 		player = new Ship("images/shipSkin.png");
 
-		player2 = new Ship("images/shipSkin.png");
 
 
 		fleet = new Fleet("images/invader.png");
-		fleet2 = new Fleet("images/invader.png");
 
 		initBackground();
 
@@ -94,8 +84,6 @@ public class Game extends Canvas {
 		player.check();
 		fleet.check();
 
-		player2.check();
-		fleet2.check();
 
 	}
 
@@ -105,9 +93,6 @@ public class Game extends Canvas {
 			player.getBullet().update();
 			fleet.update(elapsedTime);
 
-			player2.update(elapsedTime);
-			player2.getBullet().update();
-			fleet2.update(elapsedTime);
 		}
 	}
 
@@ -115,9 +100,7 @@ public class Game extends Canvas {
 		if (player.isAlive()) {
 			gc.fillText("Your score: " + Integer.toString(score), 3, 15);
 		}
-		if (player2.isAlive()) {
-			gc.fillText("Your score2: " + Integer.toString(score2), 3, 15);
-		}
+
 	}
 
 	private void renderElements() {
@@ -126,23 +109,16 @@ public class Game extends Canvas {
 		if (fleet.intersect(player.getBullet(), gc)) {
 			score += 100;
 		}
-		if (fleet2.intersect(player2.getBullet(), gc)) {
-			score2 += 100;
-		}
-		fleet.intersect(player, gc);
 
-		fleet2.intersect(player2, gc);
+		fleet.intersect(player, gc);
 
 
 		fleet.render(gc);
-		fleet2.render(gc);
 
 
 		player.render(gc);
 		player.getBullet().render(gc);
 
-		player2.render(gc);
-		player2.getBullet().render(gc);
 
 		renderScore();
 	}
@@ -173,7 +149,6 @@ public class Game extends Canvas {
 			renderElements();
 
 			fleet.shoot();
-			fleet2.shoot();
 
 			if (!player.isAlive()) {
 				inGame = false;
@@ -181,11 +156,7 @@ public class Game extends Canvas {
 				this.stop();
 			}
 
-			if (!player2.isAlive()) {
-				inGame = false;
-				gameOver(score2);
-				this.stop();
-			}
+
 
 			if (fleet.isDestroyed()) {
 				System.out.println("You win");
@@ -193,11 +164,7 @@ public class Game extends Canvas {
 				this.stop();
 			}
 
-			if (fleet2.isDestroyed()) {
-				System.out.println("You win");
-				inGame = false;
-				this.stop();
-			}
+
 		}
 	}
 }
