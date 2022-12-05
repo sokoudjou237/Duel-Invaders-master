@@ -13,6 +13,7 @@ public class Game extends Canvas {
 	private GraphicsContext gc;
 
 	private Ship player;
+
 	private Fleet fleet;
 
 

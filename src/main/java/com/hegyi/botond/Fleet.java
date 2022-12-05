@@ -230,13 +230,18 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 			v.render(gc);
 		}
 
+		for (MovingGameObject v : bullets) {
+			v.render(gc);
+		}
+
 		for (MovingGameObject v : invaders2) {
 			v.render(gc);
 		}
 
-		for (MovingGameObject v : bullets) {
+		for (MovingGameObject v : bullets2) {
 			v.render(gc);
 		}
+
 	}
 
 	@Override
@@ -278,8 +283,6 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 			}
 		}
 		for (int i = 0; i < numberOfBullet; i++) {
-			System.out.println(i  + " :  y = " + bullets.get(i).getPositionY());
-			System.out.println(i + " : y2 = " + bullets2.get(i).getPositionY());
 			if (bullets.get(i).getPositionY() > Game.HEIGHT) {
 				bullets.get(i).setMovingDown(true);
 				bullets.get(i).die();
