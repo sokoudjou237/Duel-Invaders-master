@@ -13,6 +13,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Fleet implements checker, moveable, renderable, canShoot {
+	private double yy;
 	private List<MovingGameObject> invaders;
 
 	private List<MovingGameObject> invaders2;
@@ -200,38 +201,58 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 
 	@Override
 	public void check() {
+
 		for (MovingGameObject invader : invaders) {
 			if (invader.getPositionX() > Game.WIDTH - invader.getWidth() &&
 					invader.isMovingRight()) {
+				yy=invader.getPositionY();
 				for (MovingGameObject v : invaders) {
-					v.setMovingLeft(true);
+
+
+					v.setMovingDown(true);
+
+
 				}
 				break;
-			} else {
-				if (invader.getPositionX() < 0 &&
-						invader.isMovingLeft()) {
+			}
+			else if (invader.getPositionX() > Game.WIDTH - invader.getWidth() &&
+					invader.isMovingDown()) {
+				if (invader.getPositionY()-yy>150){
 					for (MovingGameObject v : invaders) {
-						v.setMovingRight(true);
+
+
+						v.setMovingLeft(true);
+
+
 					}
 					break;
 				}
 			}
-		}
+			else {
+				if (invader.getPositionX() < 0 &&
+						invader.isMovingLeft()) {
+					yy  = invader.getPositionY();
+					for (MovingGameObject v : invaders) {
+//
 
-		for (MovingGameObject invader2 : invaders2) {
-			if (invader2.getPositionX() > Game.WIDTH - invader2.getWidth() &&
-					invader2.isMovingRight()) {
-				for (MovingGameObject v : invaders2) {
-					v.setMovingLeft(true);
-				}
-				break;
-			} else {
-				if (invader2.getPositionX() < 0 &&
-						invader2.isMovingLeft()) {
-					for (MovingGameObject v : invaders2) {
-						v.setMovingRight(true);
+						v.setMovingDown(true);
+
+
 					}
 					break;
+				}
+				else if (invader.getPositionX() <0 &&
+						invader.isMovingDown()) {
+					if (invader.getPositionY()-yy>150){
+						for (MovingGameObject v : invaders) {
+
+
+							v.setMovingRight(true);
+
+
+						}
+						break;
+					}
 				}
 			}
 		}
