@@ -7,10 +7,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.jetbrains.annotations.NotNull;
 
 public class WelcomeController {
 
-	public void handleStartButtonAction(ActionEvent actionEvent) {
+	public void handleStartButtonAction(@NotNull ActionEvent actionEvent) {
 		Pane root = new Pane();
 		Scene scene = new Scene( root );
 
