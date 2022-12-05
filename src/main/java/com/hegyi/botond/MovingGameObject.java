@@ -64,23 +64,31 @@ public class MovingGameObject extends GameObject implements moveable {
 	public void setMovingRight(boolean movingRight) {
 		this.movingRight = movingRight;
 		movingLeft =false;
+		movingDown = false;
+		movingUp = false;
 		setVelocity(movingRight, speed, 0);
 	}
 
 	public void setMovingLeft(boolean movingLeft) {
 		this.movingLeft = movingLeft;
 		movingRight = false;
+		movingDown = false;
+		movingUp = false;
 		setVelocity(movingLeft, -speed, 0);
 	}
 
 	public void setMovingUp(boolean movingUp) {
 		this.movingUp = movingUp;
 		movingDown = false;
+		movingRight = false;
+		movingLeft =false;
 		setVelocity(movingUp, 0, -speed);
 	}
 
 	public void setMovingDown(boolean movingDown) {
 		this.movingDown = movingDown;
+		movingRight = false;
+		movingLeft =false;
 		movingUp = false;
 		setVelocity(movingDown, 0, speed);
 	}
