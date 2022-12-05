@@ -252,7 +252,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 			}
 			else if (invader2.getPositionX() > Game.WIDTH - invader2.getWidth() &&
 					invader2.isMovingUp()) {
-				if (invader2.getPositionY()-yy>150){
+				if (yy-invader2.getPositionY()>150){
 					for (MovingGameObject v : invaders2) {
 						v.setMovingLeft(true);
 					}
@@ -270,7 +270,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 				}
 				else if (invader2.getPositionX() <0 &&
 						invader2.isMovingUp()) {
-					if (invader2.getPositionY()-yy>150){
+					if (yy-invader2.getPositionY()>150){
 						for (MovingGameObject v : invaders2) {
 							v.setMovingRight(true);
 						}
