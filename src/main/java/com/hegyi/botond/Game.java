@@ -22,6 +22,7 @@ public class Game extends Canvas {
 
 
 	private GameObject background;
+	private GameObject background2;
 
 
 	private myTimer timer = new myTimer();
@@ -72,7 +73,7 @@ public class Game extends Canvas {
 		background.setAlive(true);
 
 //		background2 = new GameObject("images/gameWallpaper2.jpg");
-//		background2.setPosition(0, -1000);
+//		background2.setPosition(0, 0);
 //		background2.setAlive(true);
 	}
 

@@ -7,6 +7,7 @@ import com.hegyi.botond.interfaces.canShoot;
 public class Ship extends MovingGameObject implements checker, canShoot {
 	private MovingGameObject bullet;
 	private GameObject destroyedImage;
+	private GameObject destroyedImage2;
 	private AudioClip shootSound;
 	private AudioClip explosionSound;
 
@@ -44,6 +45,7 @@ public class Ship extends MovingGameObject implements checker, canShoot {
 		initExplosionSound();
 
 		destroyedImage = new GameObject("images/playerDestroyedImage.png", 50, 50);
+//		destroyedImage2 = new GameObject("images/playerDestroyedImage.png", 512, 5);
 
 		setPosition((Game.WIDTH - getWidth())/2, Game.HEIGHT-getHeight() + 5);
 		setSpeed(200);
