@@ -207,11 +207,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 					invader.isMovingRight()) {
 				yy=invader.getPositionY();
 				for (MovingGameObject v : invaders) {
-
-
 					v.setMovingDown(true);
-
-
 				}
 				break;
 			}
@@ -219,11 +215,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 					invader.isMovingDown()) {
 				if (invader.getPositionY()-yy>150){
 					for (MovingGameObject v : invaders) {
-
-
 						v.setMovingLeft(true);
-
-
 					}
 					break;
 				}
@@ -233,11 +225,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 						invader.isMovingLeft()) {
 					yy  = invader.getPositionY();
 					for (MovingGameObject v : invaders) {
-//
-
 						v.setMovingDown(true);
-
-
 					}
 					break;
 				}
@@ -245,11 +233,46 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 						invader.isMovingDown()) {
 					if (invader.getPositionY()-yy>150){
 						for (MovingGameObject v : invaders) {
-
-
 							v.setMovingRight(true);
+						}
+						break;
+					}
+				}
+			}
+		}
 
-
+		for (MovingGameObject invader2 : invaders2) {
+			if (invader2.getPositionX() > Game.WIDTH - invader2.getWidth() &&
+					invader2.isMovingRight()) {
+				yy=invader2.getPositionY();
+				for (MovingGameObject v : invaders2) {
+					v.setMovingUp(true);
+				}
+				break;
+			}
+			else if (invader2.getPositionX() > Game.WIDTH - invader2.getWidth() &&
+					invader2.isMovingUp()) {
+				if (invader2.getPositionY()-yy>150){
+					for (MovingGameObject v : invaders2) {
+						v.setMovingLeft(true);
+					}
+					break;
+				}
+			}
+			else {
+				if (invader2.getPositionX() < 0 &&
+						invader2.isMovingLeft()) {
+					yy  = invader2.getPositionY();
+					for (MovingGameObject v : invaders2) {
+						v.setMovingUp(true);
+					}
+					break;
+				}
+				else if (invader2.getPositionX() <0 &&
+						invader2.isMovingUp()) {
+					if (invader2.getPositionY()-yy>150){
+						for (MovingGameObject v : invaders2) {
+							v.setMovingRight(true);
 						}
 						break;
 					}
