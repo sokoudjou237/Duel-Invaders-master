@@ -4,6 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -14,16 +15,22 @@ public class Game extends Canvas {
 
 	private Ship player;
 
+	private Ship player2;
+
 	private Fleet fleet;
 
 
+
 	private GameObject background;
+
 
 	private myTimer timer = new myTimer();
 	private long lastNanoTime;
 	private boolean inGame;
 
 	private int score = 0;
+
+	private int score2 = 0;
 
 
 	public static double WIDTH, HEIGHT;
@@ -46,6 +53,10 @@ public class Game extends Canvas {
 		return player;
 	}
 
+	public Ship getPlayer2() {
+		return player2;
+	}
+
 
 	public boolean isInGame() {
 		return inGame;
@@ -59,6 +70,10 @@ public class Game extends Canvas {
 		background = new GameObject("images/gameWallpaper.jpg");
 		background.setPosition(0, (getHeight() - background.getHeight()));
 		background.setAlive(true);
+
+//		background2 = new GameObject("images/gameWallpaper2.jpg");
+//		background2.setPosition(0, -1000);
+//		background2.setAlive(true);
 	}
 
 	private void initElements() {
@@ -69,7 +84,8 @@ public class Game extends Canvas {
 		inGame = true;
 
 		player = new Ship("images/shipSkin.png");
-
+		player2 = new Ship("images/shipSkin2.png");
+		player2.setPosition(512,5);
 
 
 		fleet = new Fleet("images/invader.png");
@@ -83,7 +99,10 @@ public class Game extends Canvas {
 
 	public void checkElements() {
 		player.check();
+		player2.check();
+
 		fleet.check();
+
 
 
 	}
@@ -91,7 +110,11 @@ public class Game extends Canvas {
 	private void updateElements(double elapsedTime) {
 		if (inGame) {
 			player.update(elapsedTime);
+			player2.update(elapsedTime);
+
 			player.getBullet().update();
+			player2.getBullet().update();
+
 			fleet.update(elapsedTime);
 
 		}
@@ -99,9 +122,12 @@ public class Game extends Canvas {
 
 	private void renderScore() {
 		if (player.isAlive()) {
-			gc.fillText("Your score: " + Integer.toString(score), 3, 15);
+			gc.fillText("Your score: " + Integer.toString(score), 3, 1000);
 		}
 
+		if (player2.isAlive()) {
+			gc.fillText("Your score: " + Integer.toString(score2), 3, 15);
+		}
 	}
 
 	private void renderElements() {
@@ -110,15 +136,21 @@ public class Game extends Canvas {
 		if (fleet.intersect(player.getBullet(), gc)) {
 			score += 100;
 		}
+		if (fleet.intersect(player2.getBullet(), gc)) {
+			score2 += 100;
+		}
 
 		fleet.intersect(player, gc);
-
+		fleet.intersect(player2, gc);
 
 		fleet.render(gc);
 
 
 		player.render(gc);
 		player.getBullet().render(gc);
+
+		player2.render(gc);
+		player2.getBullet().render(gc);
 
 
 		renderScore();
@@ -151,7 +183,7 @@ public class Game extends Canvas {
 
 			fleet.shoot();
 
-			if (!player.isAlive()) {
+			if (!player.isAlive() && !player2.isAlive()) {
 				inGame = false;
 				gameOver(score);
 				this.stop();

@@ -59,6 +59,40 @@ public class WelcomeController {
 			}
 		});
 
+		scene.setOnKeyPressed(f -> {
+			Ship player2 = game.getPlayer2();
+			switch (f.getCode()){
+				case D:
+					if (player2.getPositionX() <= game.getWidth()-player2.getWidth() && game.isInGame()) {
+						player2.setMovingRight(true);
+					}
+					break;
+				case Q:
+					if (player2.getPositionX() >= 0 && game.isInGame()) {
+						player2.setMovingLeft(true);
+					}
+					break;
+				case Z:
+					if (game.isInGame()) {
+						player2.shoot();
+					}
+					break;
+				case ESCAPE:
+					Game.myTimer timer = game.getTimer();
+
+					if (game.isInGame()) {
+						timer.stop();
+						game.setInGame(false);
+					} else {
+						timer.start();
+						game.setInGame(true);
+					}
+					break;
+			}
+		});
+
+
+
 		scene.setOnKeyReleased(e -> {
 			MovingGameObject player = game.getPlayer();
 			switch (e.getCode()){
@@ -70,7 +104,20 @@ public class WelcomeController {
 					break;
 			}
 		});
+
+		scene.setOnKeyReleased(f -> {
+			MovingGameObject player2 = game.getPlayer2();
+			switch (f.getCode()){
+				case D:
+					player2.setMovingRight(false);
+					break;
+				case Q:
+					player2.setMovingLeft(false);
+					break;
+			}
+		});
 	}
+
 
 	public void handleExitButtonAction(ActionEvent actionEvent) {
 		System.exit(0);
