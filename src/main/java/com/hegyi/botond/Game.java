@@ -123,15 +123,15 @@ public class Game extends Canvas {
 		renderScore();
 	}
 
-	private void gameOver(int scor) {
+	private void gameOver(int score) {
 		gc.setFill(Color.WHITE);
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setTextBaseline(VPos.CENTER);
 		gc.setFont(new Font(gc.getFont().getName(), 30));
 
-		gc.fillText("Game over!\nYour score: " + scor, WIDTH / 2.0, HEIGHT / 2.0);
+		gc.fillText("Game over!\nYour score: " + score, WIDTH / 2.0, HEIGHT / 2.0);
 
-		gc.fillText("Game over!\nYour score: " + scor, WIDTH / 2.0, HEIGHT / 2.0);
+		gc.fillText("Game over!\nYour score: " + score, WIDTH / 2.0, HEIGHT / 2.0);
 	}
 
 	public class myTimer extends AnimationTimer {
