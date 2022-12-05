@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class WelcomeControlle {
+public class WelcomeController {
 
 	public void handleStartButtonAction(ActionEvent actionEvent) {
 		Pane root = new Pane();
