@@ -221,14 +221,14 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 		for (MovingGameObject invader2 : invaders2) {
 			if (invader2.getPositionX() > Game.WIDTH - invader2.getWidth() &&
 					invader2.isMovingRight()) {
-				for (MovingGameObject v : invaders) {
+				for (MovingGameObject v : invaders2) {
 					v.setMovingLeft(true);
 				}
 				break;
 			} else {
 				if (invader2.getPositionX() < 0 &&
 						invader2.isMovingLeft()) {
-					for (MovingGameObject v : invaders) {
+					for (MovingGameObject v : invaders2) {
 						v.setMovingRight(true);
 					}
 					break;
@@ -279,12 +279,16 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 			for (int i = 0; i < numberOfBullet; ++i) {
 				if (!bullets.get(i).isAlive()) {
 					int x = rand.nextInt(invaders.size());
-					while (!invaders.get(x).isAlive()) {
+					int y = rand.nextInt(invaders2.size());
+					while (!invaders.get(x).isAlive() || !invaders2.get(x).isAlive()) {
 						x = rand.nextInt(invaders.size());
+						y = rand.nextInt(invaders2.size());
 					}
 					bullets.get(i).setAlive(true);
 					bullets.get(i).setPosition(invaders.get(x).getPositionX() + invaders.get(x).getWidth() / 2,
 							invaders.get(x).getPositionY());
+					bullets.get(i).setPosition(invaders2.get(x).getPositionX() + invaders2.get(x).getWidth() / 2,
+							invaders2.get(x).getPositionY());
 					bullets.get(i).setMovingDown(true);
 				}
 			}
