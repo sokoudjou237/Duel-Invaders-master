@@ -198,7 +198,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 		}
 	}
 
-	public void intersect(Ship player, GraphicsContext gc) {
+	public void intersect(Ship player,Ship player2, GraphicsContext gc) {
 		for (int i = 0; i < 3; i++) {
 			if (player.intersects(bullets.get(i))) {
 				bullets.get(i).die();
@@ -207,13 +207,13 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 			}
 		}
 
-//		for (int i = 0; i < 3; i++) {
-//			if (player2.intersects(bullets2.get(i))) {
-//				bullets2.get(i).die();
-//				player2.die();
-//				player2.getDestroyedImage().render(gc);
-//			}
-//		}
+		for (int i = 0; i < 3; i++) {
+			if (player2.intersects(bullets2.get(i))) {
+				bullets2.get(i).die();
+				player2.die();
+				player2.getDestroyedImage().render(gc);
+			}
+		}
 	}
 
 	public boolean isDestroyed() {

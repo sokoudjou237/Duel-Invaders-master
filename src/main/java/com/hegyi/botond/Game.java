@@ -141,8 +141,8 @@ public class Game extends Canvas {
 			score2 += 100;
 		}
 
-		fleet.intersect(player, gc);
-		fleet.intersect(player2, gc);
+		fleet.intersect(player,player2, gc);
+//		fleet.intersect(player2, gc);
 
 		fleet.render(gc);
 
