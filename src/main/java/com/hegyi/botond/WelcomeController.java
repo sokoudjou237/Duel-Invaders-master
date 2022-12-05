@@ -40,7 +40,7 @@ public class WelcomeController {
 						player.setMovingLeft(true);
 					}
 					break;
-				case SPACE:
+				case UP:
 					if (game.isInGame()) {
 						player.shoot();
 					}
