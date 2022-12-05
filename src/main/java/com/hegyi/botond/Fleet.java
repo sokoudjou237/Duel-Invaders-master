@@ -391,7 +391,6 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 			Random rand2 = new Random();
 			for (int i = 0; i < numberOfBullet; ++i) {
 				if (!bullets2.get(i).isAlive()) {
-					System.out.println("v1");
 					int y = rand2.nextInt(invaders2.size());
 					while (!invaders2.get(y).isAlive()) {
 						y = rand2.nextInt(invaders2.size());
