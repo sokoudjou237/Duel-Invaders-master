@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 
 public class Fleet implements checker, moveable, renderable, canShoot {
 	private List<MovingGameObject> invaders;
+
+	private List<MovingGameObject> invaders2;
 	private List<MovingGameObject> bullets;
 	private GameObject destroyedImage;
 	private AudioClip invaderDieSound;
@@ -68,12 +70,24 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 		for (int i = 0; i < 10; ++i) {
 			for (int j = 0; j < 4; ++j) {
 				MovingGameObject temp = new MovingGameObject(filename, 30, 30);
-				temp.setPosition(2 + ((temp.getWidth() + 15) * i), 35 + ((temp.getHeight() + 15) * j));
+				temp.setPosition(2 + ((temp.getWidth() + 15) * i), 500 + ((temp.getHeight() + 15) * j));
 				temp.setAlive(true);
 				temp.setSpeed(150);
 				temp.setMovingRight(true);
 
 				invaders.add(temp);
+			}
+		}
+		invaders2 = new ArrayList<>();
+		for (int i = 0; i < 10; ++i) {
+			for (int j = 0; j < 4; ++j) {
+				MovingGameObject temp1 = new MovingGameObject(filename, 30, 30);
+				temp1.setPosition(2 + ((temp1.getWidth() + 15) * i), 300 + ((temp1.getHeight() + 15) * j));
+				temp1.setAlive(true);
+				temp1.setSpeed(150);
+				temp1.setMovingRight(true);
+
+				invaders2.add(temp1);
 			}
 		}
 	}
@@ -96,6 +110,21 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 				bullet.die();
 
 				destroyedImage.setPosition(invader.getPositionX(), invader.getPositionY());
+				destroyedImage.setAlive(true);
+				destroyedImage.render(gc);
+
+				invaderDieSound.play();
+
+				return true;
+			}
+		}
+
+		for (MovingGameObject invader2 : invaders2) {
+			if (invader2.intersects(bullet) && invader2.isAlive() && bullet.isAlive()) {
+				invader2.die();
+				bullet.die();
+
+				destroyedImage.setPosition(invader2.getPositionX(), invader2.getPositionY());
 				destroyedImage.setAlive(true);
 				destroyedImage.render(gc);
 
@@ -160,6 +189,10 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 			v.render(gc);
 		}
 
+		for (MovingGameObject v : invaders2) {
+			v.render(gc);
+		}
+
 		for (MovingGameObject v : bullets) {
 			v.render(gc);
 		}
@@ -185,6 +218,24 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 			}
 		}
 
+		for (MovingGameObject invader2 : invaders2) {
+			if (invader2.getPositionX() > Game.WIDTH - invader2.getWidth() &&
+					invader2.isMovingRight()) {
+				for (MovingGameObject v : invaders) {
+					v.setMovingLeft(true);
+				}
+				break;
+			} else {
+				if (invader2.getPositionX() < 0 &&
+						invader2.isMovingLeft()) {
+					for (MovingGameObject v : invaders) {
+						v.setMovingRight(true);
+					}
+					break;
+				}
+			}
+		}
+
 		for (int i = 0; i < numberOfBullet; i++) {
 			if (bullets.get(i).getPositionY() > Game.HEIGHT) {
 				bullets.get(i).setMovingDown(false);
@@ -199,6 +250,9 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 			v.update();
 		}
 
+		for (MovingGameObject v : invaders2) {
+			v.update();
+		}
 		for (MovingGameObject v : bullets) {
 			v.update();
 		}
@@ -210,6 +264,9 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 			v.update(time);
 		}
 
+		for (MovingGameObject v : invaders2) {
+			v.update(time);
+		}
 		for (MovingGameObject v : bullets) {
 			v.update();
 		}
