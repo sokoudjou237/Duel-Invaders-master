@@ -86,6 +86,18 @@ public class Ship extends MovingGameObject implements checker, canShoot {
 
 			bullet.setAlive(true);
 			bullet.setMovingUp(true);
+
+			bullet.setPosition(this.getPositionX() + this.getWidth() / 2 - 3,
+					this.getPositionY() - 5);
+		}
+	}
+
+	public void shoot2() {
+		if (!bullet.isAlive()) {
+			shootSound.play();
+
+			bullet.setAlive(true);
+			bullet.setMovingDown(true);
 			bullet.setPosition(this.getPositionX() + this.getWidth() / 2 - 3,
 					this.getPositionY() - 5);
 		}
