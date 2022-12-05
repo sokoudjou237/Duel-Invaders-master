@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class App extends Application {
+public classApp extends Application {
 	public static final int WIDTH = 450;
 	public static final int HEIGHT = 600;
 

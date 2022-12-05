@@ -6,9 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="SpaceInvaders" />
         <module name="Space-Invaders-java" />
         <module name="Space-Invaders" />
+        <module name="SpaceInvaders" />
+        <module name="Duel-Invaders-master" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
