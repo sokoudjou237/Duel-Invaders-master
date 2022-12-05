@@ -179,7 +179,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 	public boolean intersect(MovingGameObject bullet, GraphicsContext gc) {
 		boolean result = intersectWithInvader(bullet, gc);
 
-		intersectWithBullet(bullet, gc);
+		intersectWithBullet(bullet, gc);#745
 
 		if (result) {
 			canAttack = true;
