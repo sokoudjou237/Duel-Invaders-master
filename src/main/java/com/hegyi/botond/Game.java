@@ -22,7 +22,7 @@ public class Game extends Canvas {
 
 
 	private GameObject background;
-	private GameObject background2;
+//	private GameObject background2;
 
 
 	private myTimer timer = new myTimer();
