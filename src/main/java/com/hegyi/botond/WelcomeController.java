@@ -14,7 +14,7 @@ public class WelcomeController {
 		Pane root = new Pane();
 		Scene scene = new Scene( root );
 
-		Game game = new Game(1024, 1000, root);
+		Game game = new Game(1024, 00, root);
 
 		handler(scene, game);
 
