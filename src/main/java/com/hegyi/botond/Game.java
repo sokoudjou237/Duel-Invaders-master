@@ -162,10 +162,9 @@ public class Game extends Canvas {
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setTextBaseline(VPos.CENTER);
 		gc.setFont(new Font(gc.getFont().getName(), 30));
-
-		gc.fillText("Game over!\nPlayer2 score: " + score, WIDTH / 2.0, HEIGHT / 2.0);
-
-		gc.fillText("Game over!\nPlayer1 score: " + score, WIDTH / 2.0, HEIGHT / 2.0);
+		gc.fillText("Game over!\n",WIDTH / 2.0, HEIGHT / 2.5);
+		gc.fillText("Player2 score:  " + score2, WIDTH / 1.5, HEIGHT / 2.0);
+		gc.fillText("Player1 score:  " + score, WIDTH / 4.0, HEIGHT / 2.0);
 	}
 
 	public class myTimer extends AnimationTimer {
@@ -184,12 +183,11 @@ public class Game extends Canvas {
 
 			fleet.shoot();
 
-			if (!player.isAlive() && !player2.isAlive() ) {
+			if (!player.isAlive() && !player2.isAlive()) {
 				inGame = false;
 				gameOver(score);
 				this.stop();
 			}
-
 
 
 			if (fleet.isDestroyed()) {
