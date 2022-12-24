@@ -165,6 +165,11 @@ public class Game extends Canvas {
 		gc.fillText("Game over!\n",WIDTH / 2.0, HEIGHT / 2.5);
 		gc.fillText("Player2 score:  " + score2, WIDTH / 1.5, HEIGHT / 2.0);
 		gc.fillText("Player1 score:  " + score, WIDTH / 4.0, HEIGHT / 2.0);
+		if (score2 > score) {
+			gc.fillText("Player2  win\n",WIDTH / 2.0, HEIGHT / 1.5);
+		}else{
+			gc.fillText("Player1  win\n",WIDTH / 2.0, HEIGHT / 1.5);
+		}
 	}
 
 	public class myTimer extends AnimationTimer {
@@ -191,11 +196,11 @@ public class Game extends Canvas {
 
 
 			if (fleet.isDestroyed()) {
-				if (score2 > score) {
-					System.out.println("Player1 win");
-				}else{
-					System.out.println("Player2 win");
-				}
+//				if (score2 > score) {
+//					gc.fillText("Player1 win\n",WIDTH / 2.0, HEIGHT / 1.5);
+//				}else{
+//					gc.fillText("Player2 win\n",WIDTH / 2.0, HEIGHT / 1.5);
+//				}
 				inGame = false;
 				this.stop();
 
