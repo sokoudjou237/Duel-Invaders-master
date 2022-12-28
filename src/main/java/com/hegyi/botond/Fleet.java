@@ -92,7 +92,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 				MovingGameObject temp = new MovingGameObject(filename, 30, 30);
 				temp.setPosition(2 + ((temp.getWidth() + 15) * i), 500 + ((temp.getHeight() + 15) * j));
 				temp.setAlive(true);
-				temp.setSpeed(1500);
+				temp.setSpeed(150);
 				temp.setMovingRight(true);
 
 				invaders.add(temp);
@@ -104,7 +104,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 				MovingGameObject temp2 = new MovingGameObject(filename, 30, 30);
 				temp2.setPosition(2 + ((temp2.getWidth() + 15) * i), 300 + ((temp2.getHeight() + 15) * j));
 				temp2.setAlive(true);
-				temp2.setSpeed(1500);
+				temp2.setSpeed(150);
 				temp2.setMovingRight(true);
 
 				invaders2.add(temp2);
