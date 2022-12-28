@@ -153,11 +153,10 @@ public class Game extends Canvas {
 		player2.render(gc);
 		player2.getBullet().render(gc);
 
-
 		renderScore();
 	}
 
-	private void gameOver(int score) {
+	public void gameOver(int score) {
 		gc.setFill(Color.WHITE);
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setTextBaseline(VPos.CENTER);
@@ -194,16 +193,20 @@ public class Game extends Canvas {
 				this.stop();
 			}
 
+			if (fleet.CheckGameOver()){
+				inGame = false;
+				gameOver(score);
+				this.stop();
+			}
 
 			if (fleet.isDestroyed()) {
-//				if (score2 > score) {
-//					gc.fillText("Player1 win\n",WIDTH / 2.0, HEIGHT / 1.5);
-//				}else{
-//					gc.fillText("Player2 win\n",WIDTH / 2.0, HEIGHT / 1.5);
-//				}
 				inGame = false;
 				this.stop();
+			}
 
+			if (fleet.isDestroyed2()) {
+				inGame = false;
+				this.stop();
 			}
 		}
 	}

@@ -92,7 +92,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 				MovingGameObject temp = new MovingGameObject(filename, 30, 30);
 				temp.setPosition(2 + ((temp.getWidth() + 15) * i), 500 + ((temp.getHeight() + 15) * j));
 				temp.setAlive(true);
-				temp.setSpeed(150);
+				temp.setSpeed(1500);
 				temp.setMovingRight(true);
 
 				invaders.add(temp);
@@ -104,7 +104,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 				MovingGameObject temp2 = new MovingGameObject(filename, 30, 30);
 				temp2.setPosition(2 + ((temp2.getWidth() + 15) * i), 300 + ((temp2.getHeight() + 15) * j));
 				temp2.setAlive(true);
-				temp2.setSpeed(150);
+				temp2.setSpeed(1500);
 				temp2.setMovingRight(true);
 
 				invaders2.add(temp2);
@@ -244,6 +244,40 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 
 	}
 
+	public boolean CheckGameOver() {
+		if (canAttack) {
+			for (MovingGameObject invader : invaders) {
+				if (invader.getPositionX() >900) {
+					yy = invader.getPositionY();
+					System.out.println("1" + yy);
+					for (MovingGameObject v : invaders) {
+						v.setMovingDown(false);
+						v.setMovingLeft(false);
+						v.setMovingRight(false);
+						v.setMovingUp(false);
+					}
+				}
+			}
+
+			for (MovingGameObject invader2 : invaders2) {
+				if (invader2.getPositionX() < 20) {
+					yy = invader2.getPositionY();
+					System.out.print("2" + yy);
+					for (MovingGameObject v : invaders2) {
+						v.setMovingDown(false);
+						v.setMovingLeft(false);
+						v.setMovingRight(false);
+						v.setMovingUp(false);
+					}
+				}
+			}
+			return true;
+		}else {
+			return false;
+		}
+
+	}
+
 	@Override
 	public void check() {
 
@@ -263,6 +297,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 					}
 					break;
 				}
+
 			} else {
 				if (invader.getPositionX() < 0 &&
 						invader.isMovingLeft()) {

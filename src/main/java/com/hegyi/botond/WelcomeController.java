@@ -108,7 +108,7 @@ public class WelcomeController {
 		Alert info = new Alert(Alert.AlertType.INFORMATION);
 		info.setTitle("Instruction");
 		info.setHeaderText(null);
-		info.setContentText("Moving with Left and Right arrow.\nShoot with Space.");
+		info.setContentText("Player1 : Moving with Left and Right arrow and Shoot with Up.\nplayer2 : Moving with Q and D arrow and Shoot with Z");
 		Stage stage = (Stage) info.getDialogPane().getScene().getWindow();
 		stage.getIcons().add(new Image(getClass().getClassLoader().getResource("images/invader.png").toString()));
 		info.showAndWait();
