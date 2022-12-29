@@ -5,20 +5,21 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 
 public class WelcomeController {
 
-	public void handleStartButtonAction(@NotNull ActionEvent actionEvent) {
+	public void handleStartButtonAction( ActionEvent actionEvent) {
 		Pane root = new Pane();
 		Scene scene = new Scene( root );
 
 		Game game = new Game(1024, 1000, root);
 
 		handler(scene, game);
-
 		root.getChildren().add(game);
 
 		Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -26,8 +27,16 @@ public class WelcomeController {
 		window.centerOnScreen();
 		window.show();
 	}
-
+	private void handler1(Scene scene, Game game) {
+		scene.setOnKeyPressed(e -> {
+			if (e.getCode() == KeyCode.R) {
+				// appelez la méthode handleStartButtonAction() pour rejouer le jeu
+				handleStartButtonAction(null);
+			}
+		});
+	}
 	private void handler(Scene scene, Game game) {
+
 		scene.setOnKeyPressed(e -> {
 			Ship player = game.getPlayer();
 			Ship player2 = game.getPlayer2();
@@ -60,10 +69,10 @@ public class WelcomeController {
 					break;
 				case Z:
 					if (game.isInGame()) {
-						player2.shoot2();
+						player2.shoot();
 					}
 					break;
-				case ESCAPE:
+				case SPACE:
 					Game.myTimer timer = game.getTimer();
 
 					if (game.isInGame()) {
@@ -74,7 +83,10 @@ public class WelcomeController {
 						game.setInGame(true);
 					}
 					break;
-			}
+				case ESCAPE:
+					handleStartButtonAction(null);
+					break;
+				}
 		});
 
 
@@ -99,7 +111,6 @@ public class WelcomeController {
 
 	}
 
-
 	public void handleExitButtonAction(ActionEvent actionEvent) {
 		System.exit(0);
 	}
@@ -108,7 +119,7 @@ public class WelcomeController {
 		Alert info = new Alert(Alert.AlertType.INFORMATION);
 		info.setTitle("Instruction");
 		info.setHeaderText(null);
-		info.setContentText("Player1 : Moving with Left and Right arrow and Shoot with Up.\nplayer2 : Moving with Q and D arrow and Shoot with Z");
+		info.setContentText("Player1 : Moving with Left and Right arrow and Shoot with Up.\nplayer2 : Moving with Q and D arrow and Shoot with Z \n press ");
 		Stage stage = (Stage) info.getDialogPane().getScene().getWindow();
 		stage.getIcons().add(new Image(getClass().getClassLoader().getResource("images/invader.png").toString()));
 		info.showAndWait();
