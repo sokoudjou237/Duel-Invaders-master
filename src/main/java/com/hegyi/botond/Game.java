@@ -139,18 +139,25 @@ public class Game extends Canvas {
 		renderScore();
 	}
 
+
 	public void gameOver(int score) {
 		gc.setFill(Color.WHITE);
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setTextBaseline(VPos.CENTER);
 		gc.setFont(new Font(gc.getFont().getName(), 30));
-		gc.fillText("Game over!\n",WIDTH / 2.0, HEIGHT / 2.5);
+		if(fleet.getInvaders().isEmpty() && fleet.isDestroyed()){
+			gc.fillText("You won!\n",WIDTH / 2.0, HEIGHT / 2.5);
+		}else {
+			gc.fillText("Game over!\n",WIDTH / 2.0, HEIGHT / 2.5);
+		}
 		gc.fillText("Player2 score:  " + score2, WIDTH / 1.5, HEIGHT / 2.0);
 		gc.fillText("Player1 score:  " + score, WIDTH / 4.0, HEIGHT / 2.0);
 		if (score2 > score) {
 			gc.fillText("Player2  win\n",WIDTH / 2.0, HEIGHT / 1.5);
-		}else{
+		}else if(score2 < score){
 			gc.fillText("Player1  win\n",WIDTH / 2.0, HEIGHT / 1.5);
+		}else {
+			gc.fillText("You won\n",WIDTH / 2.0, HEIGHT / 1.5);
 		}
 	}
 	private double yy;
@@ -222,10 +229,10 @@ public class Game extends Canvas {
 						}
 					}
 				}
-				for (int i = 0; i < 3; i++) {
-					fleet.getBullets().get(i).setMovingUp(true);
+//				for (int i = 0; i < 3; i++) {
+//					fleet.getBullets().get(i).setMovingUp(true);
 //					fleet.getBullets2().get(i).setMovingUp(true);
-				}
+//				}
 			}
 
 			if (!player2.isAlive()) {
@@ -272,17 +279,16 @@ public class Game extends Canvas {
 							}
 						}
 					}
-					for (int i = 0; i < 3; i++) {
+//					for (int i = 0; i < 3; i++) {
 //						fleet.getBullets().get(i).setMovingDown(true);
-						fleet.getBullets2().get(i).setMovingDown(true);
-					}
+//						fleet.getBullets2().get(i).setMovingDown(true);
+//					}
 				}
 			}
 
-			if (fleet.isDestroyed() && fleet.isDestroyed2()){
-				inGame = false;
-				gameOver(score);
-				this.stop();
+			if (fleet.isDestroyed() && fleet.isDestroyed2() ){
+				inGame = true;
+//				this.stop();
 			}
 
 //			if (fleet.isDestroyed()) {
