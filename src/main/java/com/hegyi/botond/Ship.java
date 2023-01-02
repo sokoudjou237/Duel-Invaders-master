@@ -70,7 +70,7 @@ public class Ship extends MovingGameObject implements checker, canShoot {
 			bullet.die();
 		}
 
-		if (bullet2.getPositionY() < 0) {
+		if (bullet2.getPositionY() > 1000) {
 			bullet2.die();
 		}
 	}
