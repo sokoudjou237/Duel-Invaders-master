@@ -101,7 +101,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 		for (int i = 0; i < 10; ++i) {
 			for (int j = 0; j < 4; ++j) {
 				MovingGameObject temp2 = new MovingGameObject(filename, 30, 30);
-				temp2.setPosition(2 + ((temp2.getWidth() + 15) * i), 300 + ((temp2.getHeight() + 15) * j));
+				temp2.setPosition(2 + ((temp2.getWidth() + 15) * i), 280 + ((temp2.getHeight() + 15) * j));
 				temp2.setAlive(true);
 				temp2.setSpeed(200);
 				temp2.setMovingRight(true);
