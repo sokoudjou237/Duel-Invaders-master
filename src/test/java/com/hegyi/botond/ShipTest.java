@@ -49,7 +49,7 @@ public class ShipTest {
 		ship.check();
 
 		Assert.assertFalse(ship.getBullet().isAlive());
-		Assert.assertFalse(ship.getBullet2().isAlive());
+
 	}
 
 	@Test

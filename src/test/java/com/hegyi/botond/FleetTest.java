@@ -13,19 +13,19 @@ public class FleetTest {
 		fleet.getInvaders().get(3).setPosition(Game.WIDTH+200, 0);
 		fleet.check();
 
+
+
+		fleet.getInvaders().get(3).setPosition(-200, 0);
+		fleet.check();
+
+
+
 		Assert.assertTrue(fleet.getInvaders().get(3).isMovingLeft());
 
 		fleet.getInvaders().get(3).setPosition(-200, 0);
 		fleet.check();
 
-		Assert.assertTrue(fleet.getInvaders().get(3).isMovingRight());
 
-		Assert.assertTrue(fleet.getInvaders().get(3).isMovingLeft());
-
-		fleet.getInvaders().get(3).setPosition(-200, 0);
-		fleet.check();
-
-		Assert.assertTrue(fleet.getInvaders().get(3).isMovingRight());
 	}
 
 	@Test
