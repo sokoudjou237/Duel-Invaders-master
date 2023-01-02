@@ -24,7 +24,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 	private AudioClip invaderDieSound;
 	private AudioClip bulletDestroyedSound;
 	private boolean canAttack = false;
-	private int numberOfBullet = 1;
+	private int numberOfBullet = 3;
 
 	public Fleet(String filename) {
 		init(filename);

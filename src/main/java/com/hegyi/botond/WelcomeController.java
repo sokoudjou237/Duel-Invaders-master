@@ -74,7 +74,6 @@ public class WelcomeController {
 					break;
 				case SPACE:
 					Game.myTimer timer = game.getTimer();
-
 					if (game.isInGame()) {
 						timer.stop();
 						game.setInGame(false);
@@ -119,7 +118,7 @@ public class WelcomeController {
 		Alert info = new Alert(Alert.AlertType.INFORMATION);
 		info.setTitle("Instruction");
 		info.setHeaderText(null);
-		info.setContentText("Player1 : Moving with Left and Right arrow and Shoot with Up.\nplayer2 : Moving with Q and D arrow and Shoot with Z \n press ");
+		info.setContentText("Player1 : Moving with Left and Right arrow and Shoot with Up.\nplayer2 : Moving with Q and D arrow and Shoot with Z \n press Echap to break ");
 		Stage stage = (Stage) info.getDialogPane().getScene().getWindow();
 		stage.getIcons().add(new Image(getClass().getClassLoader().getResource("images/invader.png").toString()));
 		info.showAndWait();

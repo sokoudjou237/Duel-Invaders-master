@@ -19,6 +19,13 @@ public class FleetTest {
 		fleet.check();
 
 		Assert.assertTrue(fleet.getInvaders().get(3).isMovingRight());
+
+		Assert.assertTrue(fleet.getInvaders().get(3).isMovingLeft());
+
+		fleet.getInvaders().get(3).setPosition(-200, 0);
+		fleet.check();
+
+		Assert.assertTrue(fleet.getInvaders().get(3).isMovingRight());
 	}
 
 	@Test

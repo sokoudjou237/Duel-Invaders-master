@@ -241,6 +241,22 @@ public class Game extends Canvas {
 				this.stop();
 			}
 
+			if (fleet.CheckGameOver()){
+				player.setAlive(false);
+				player.getBullet().setAlive(false);
+				player.getBullet().setSpeed(0);
+				player.getBullet().setVelocity(0, 0);
+				player.setPosition(1050, 1050);
+			}
+
+			if (fleet.CheckGameOver2()){
+				player2.setAlive(false);
+				player2.getBullet().setAlive(false);
+				player2.getBullet().setSpeed(0);
+				player2.getBullet().setVelocity(0, 0);
+				player2.setPosition(1050, 1050);
+
+			}
 			if (!player.isAlive()) {
 				player.getBullet().setAlive(false);
 				player.getBullet().setSpeed(0);
