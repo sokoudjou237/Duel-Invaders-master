@@ -34,6 +34,8 @@ public class FleetTest {
 		Fleet fleet = new Fleet("images/invader.png");
 		fleet.setCanAttack(true);
 		fleet.shoot();
+		fleet.shoot_if_player1_dies();
+		fleet.shoot_if_player2_dies();
 		fleet.getBullets().get(1).setPosition(0, Game.HEIGHT+200);
 		fleet.check();
 
@@ -52,4 +54,5 @@ public class FleetTest {
 		Assert.assertFalse(mgo.isAlive());
 		Assert.assertTrue(fleet.canAttack());
 	}
+
 }

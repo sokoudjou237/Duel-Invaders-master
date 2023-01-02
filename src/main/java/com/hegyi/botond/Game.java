@@ -263,11 +263,6 @@ public class Game extends Canvas {
 				player.getBullet().setVelocity(0, 0);
 				player.setPosition(1050, 1050);
 
-
-//				for (int i = 0; i < 3; i++) {
-//					fleet.getBullets().get(i).setMovingUp(true);
-//					fleet.getBullets2().get(i).setMovingUp(true);
-//				}
 				for (MovingGameObject invader : fleet.getInvaders()) {
 					if (invader.getPositionX() > Game.WIDTH - invader.getWidth() &&
 							invader.isMovingRight()) {
@@ -310,10 +305,7 @@ public class Game extends Canvas {
 				player2.getBullet2().setSpeed(1);
 				player2.getBullet2().setVelocity(0, 0);
 				player2.setPosition(1050, 1050);
-//				for (int i = 0; i < 3; i++) {
-//					fleet.getBullets().get(i).setMovingDown(true);
-//					fleet.getBullets2().get(i).setMovingDown(true);
-//				}
+
 				for (MovingGameObject invader2 : fleet.getInvaders2()) {
 					if (invader2.getPositionX() > Game.WIDTH - invader2.getWidth() &&
 							invader2.isMovingRight()) {
