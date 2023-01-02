@@ -357,7 +357,6 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 				}
 			}
 		}
-
 		for (int i = 0; i < numberOfBullet; i++) {
 			if (bullets2.get(i).getPositionY() < 0) {
 				bullets2.get(i).setMovingUp(true);
