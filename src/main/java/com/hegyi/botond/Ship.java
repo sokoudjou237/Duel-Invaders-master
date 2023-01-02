@@ -6,11 +6,10 @@ import com.hegyi.botond.interfaces.canShoot;
 
 public class Ship extends MovingGameObject implements checker, canShoot {
 	private MovingGameObject bullet;
+	private MovingGameObject bullet2;
 	private GameObject destroyedImage;
-	private GameObject destroyedImage2;
 	private AudioClip shootSound;
 	private AudioClip explosionSound;
-
 	public Ship(String filename) {
 		super(filename, 50, 50);
 		init();
@@ -20,6 +19,10 @@ public class Ship extends MovingGameObject implements checker, canShoot {
 		return bullet;
 	}
 
+	public MovingGameObject getBullet2() {
+		return bullet2;
+	}
+
 	public GameObject getDestroyedImage() {
 		return destroyedImage;
 	}
@@ -27,6 +30,9 @@ public class Ship extends MovingGameObject implements checker, canShoot {
 	private void initPlayerShoot() {
 		bullet = new MovingGameObject("images/ship_shot.png");
 		bullet.setSpeed(10);
+
+		bullet2 = new MovingGameObject("images/ship_shot.png");
+		bullet2.setSpeed(10);
 	}
 
 	private void initShootSound() {
@@ -45,16 +51,27 @@ public class Ship extends MovingGameObject implements checker, canShoot {
 		initExplosionSound();
 
 		destroyedImage = new GameObject("images/playerDestroyedImage.png", 50, 50);
-//		destroyedImage2 = new GameObject("images/playerDestroyedImage.png", 512, 5);
 
 		setPosition((Game.WIDTH - getWidth())/2, Game.HEIGHT-getHeight() + 5);
 		setSpeed(200);
 		setAlive(true);
+		if(bullet.getVelocityX()== 0 || bullet.getSpeed() == 1){
+//			explosionSound.setVolume(0);
+			shootSound.setVolume(0);
+		}
+		if(bullet2.getVelocityX()== 0 || bullet2.getSpeed() == 1){
+//			explosionSound.setVolume(0);
+			shootSound.setVolume(0);
+		}
 	}
 
 	private void checkPlayerShoot() {
 		if (bullet.getPositionY() < 0) {
 			bullet.die();
+		}
+
+		if (bullet2.getPositionY() < 0) {
+			bullet2.die();
 		}
 	}
 
@@ -64,7 +81,6 @@ public class Ship extends MovingGameObject implements checker, canShoot {
 		destroyedImage.setPosition(getPositionX(), getPositionY());
 		destroyedImage.setAlive(true);
 		explosionSound.play();
-
 	}
 
 	@Override
@@ -93,16 +109,15 @@ public class Ship extends MovingGameObject implements checker, canShoot {
 			bullet.setPosition(this.getPositionX() + this.getWidth() / 2 - 3,
 					this.getPositionY() - 5);
 		}
-	}
 
-	public void shoot2() {
-		if (!bullet.isAlive()) {
+		if (!bullet2.isAlive()) {
 			shootSound.play();
 
-			bullet.setAlive(true);
-			bullet.setMovingDown(true);
-			bullet.setPosition(this.getPositionX() + this.getWidth() / 2 - 3,
+			bullet2.setAlive(true);
+			bullet2.setMovingDown(true);
+			bullet2.setPosition(this.getPositionX() + this.getWidth() / 2 - 3,
 					this.getPositionY() - 5);
 		}
 	}
+
 }

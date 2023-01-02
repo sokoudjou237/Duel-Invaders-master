@@ -24,8 +24,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 	private AudioClip invaderDieSound;
 	private AudioClip bulletDestroyedSound;
 	private boolean canAttack = false;
-	private int numberOfBullet = 3;
-
+	private int numberOfBullet = 2;
 
 	public Fleet(String filename) {
 		init(filename);
@@ -92,7 +91,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 				MovingGameObject temp = new MovingGameObject(filename, 30, 30);
 				temp.setPosition(2 + ((temp.getWidth() + 15) * i), 500 + ((temp.getHeight() + 15) * j));
 				temp.setAlive(true);
-				temp.setSpeed(150);
+				temp.setSpeed(200);
 				temp.setMovingRight(true);
 
 				invaders.add(temp);
@@ -104,7 +103,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 				MovingGameObject temp2 = new MovingGameObject(filename, 30, 30);
 				temp2.setPosition(2 + ((temp2.getWidth() + 15) * i), 300 + ((temp2.getHeight() + 15) * j));
 				temp2.setAlive(true);
-				temp2.setSpeed(150);
+				temp2.setSpeed(200);
 				temp2.setMovingRight(true);
 
 				invaders2.add(temp2);
@@ -178,9 +177,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 
 	public boolean intersect(MovingGameObject bullet, GraphicsContext gc) {
 		boolean result = intersectWithInvader(bullet, gc);
-
 		intersectWithBullet(bullet, gc);
-
 		if (result) {
 			canAttack = true;
 			newFleet();
@@ -188,6 +185,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 
 		return result;
 	}
+
 
 	private void newFleet() {
 		invaders = invaders.stream()
@@ -217,6 +215,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 	}
 
 	public boolean isDestroyed() {
+
 		return invaders.isEmpty();
 	}
 
@@ -244,6 +243,39 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 
 	}
 
+
+
+	public boolean CheckGameOver() {
+		for (MovingGameObject invader : invaders) {
+			if (invader.getPositionY() >= 915) {
+				for (MovingGameObject v : invaders) {
+					v.setMovingDown(false);
+					v.setMovingLeft(false);
+					v.setMovingRight(false);
+					v.setMovingUp(false);
+				}
+				return true;
+			}
+		}
+		return false;
+	}
+	public boolean CheckGameOver2() {
+		for (MovingGameObject invader2 : invaders2) {
+			if (invader2.getPositionY() < 50) {
+				for (MovingGameObject v : invaders2) {
+					v.setMovingDown(false);
+					v.setMovingLeft(false);
+					v.setMovingRight(false);
+					v.setMovingUp(false);
+				}
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+
 	@Override
 	public void check() {
 
@@ -263,6 +295,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 					}
 					break;
 				}
+
 			} else {
 				if (invader.getPositionX() < 0 &&
 						invader.isMovingLeft()) {
@@ -333,6 +366,8 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 		}
 	}
 
+
+
 	@Override
 	public void update() {
 		for (MovingGameObject v : invaders) {
@@ -375,7 +410,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 		if (canAttack) {
 			Random rand = new Random();
 			for (int i = 0; i < numberOfBullet; ++i) {
-				if (!bullets.get(i).isAlive() || !bullets2.get(i).isAlive()) {
+				if (!bullets.get(i).isAlive() ) {
 					int x = rand.nextInt(invaders.size());
 					while (!invaders.get(x).isAlive()) {
 						x = rand.nextInt(invaders.size());

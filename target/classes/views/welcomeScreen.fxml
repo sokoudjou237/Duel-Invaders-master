@@ -10,7 +10,7 @@
             fx:controller="com.hegyi.botond.WelcomeController">
     <VBox alignment="CENTER" layoutX="87.0" layoutY="250.0" spacing="30" stylesheets="@../styles/WelcomeScreenStyle.css">
         <Button fx:id="startButton" onAction="#handleStartButtonAction" stylesheets="@../styles/WelcomeScreenStyle.css"
-                text="START"/>
+                text="START" onKeyPressed="#handleStartButtonAction"/>
         <Button fx:id="instructionButton" onAction="#handleInstructionButtonAction"
                 stylesheets="@../styles/WelcomeScreenStyle.css" text="INSTRUCTION"/>
         <Button fx:id="exitButton" onAction="#handleExitButtonAction" stylesheets="@../styles/WelcomeScreenStyle.css"
