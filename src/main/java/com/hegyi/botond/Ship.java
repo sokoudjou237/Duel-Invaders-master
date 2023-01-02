@@ -55,11 +55,11 @@ public class Ship extends MovingGameObject implements checker, canShoot {
 		setPosition((Game.WIDTH - getWidth())/2, Game.HEIGHT-getHeight() + 5);
 		setSpeed(200);
 		setAlive(true);
-		if(bullet.getVelocityX()== 0 || bullet.getSpeed() == 1){
+		if(bullet.getVelocityX()== 0 || bullet.getSpeed() == 0){
 //			explosionSound.setVolume(0);
 			shootSound.setVolume(0);
 		}
-		if(bullet2.getVelocityX()== 0 || bullet2.getSpeed() == 1){
+		if(bullet2.getVelocityX()== 0 || bullet2.getSpeed() == 0){
 //			explosionSound.setVolume(0);
 			shootSound.setVolume(0);
 		}
