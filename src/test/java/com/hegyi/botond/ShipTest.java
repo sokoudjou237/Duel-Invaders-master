@@ -42,10 +42,14 @@ public class ShipTest {
 		JFXPanel jfxPanel = new JFXPanel();
 		Ship ship = new Ship("images/shipSkin.png");
 		ship.shoot();
+		ship.shoot_if_player1_dies();
+		ship.shoot_if_player2_dies();
 		ship.getBullet().setPosition(10, -10);
+		ship.getBullet2().setPosition(10, -10);
 		ship.check();
 
 		Assert.assertFalse(ship.getBullet().isAlive());
+		Assert.assertFalse(ship.getBullet2().isAlive());
 	}
 
 	@Test
