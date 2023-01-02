@@ -220,7 +220,15 @@ public class Game extends Canvas {
 
 			renderElements();
 
-			fleet.shoot();
+			if (!player.isAlive()) {
+				fleet.shoot_if_player1_dies();
+
+			}
+
+			else if (!player2.isAlive()) {
+				fleet.shoot_if_player2_dies();
+			}
+			else {fleet.shoot();}
 			/*
 			si les deux joueurs sont mort,
 			si les invaders sont plus près des joueurs
@@ -238,6 +246,7 @@ public class Game extends Canvas {
 				player.getBullet().setSpeed(0);
 				player.getBullet().setVelocity(0, 0);
 				player.setPosition(1050, 1050);
+
 
 //				for (int i = 0; i < 3; i++) {
 //					fleet.getBullets().get(i).setMovingUp(true);

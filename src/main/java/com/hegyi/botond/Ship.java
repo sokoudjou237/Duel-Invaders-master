@@ -119,5 +119,13 @@ public class Ship extends MovingGameObject implements checker, canShoot {
 					this.getPositionY() - 5);
 		}
 	}
+	@Override
+	public void shoot_if_player2_dies(){
+
+	}
+	@Override
+	public void shoot_if_player1_dies(){
+
+	}
 
 }

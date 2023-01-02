@@ -24,7 +24,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 	private AudioClip invaderDieSound;
 	private AudioClip bulletDestroyedSound;
 	private boolean canAttack = false;
-	private int numberOfBullet = 2;
+	private int numberOfBullet = 1;
 
 	public Fleet(String filename) {
 		init(filename);
@@ -316,7 +316,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 			}
 		}
 		for (int i = 0; i < numberOfBullet; i++) {
-			if (bullets.get(i).getPositionY() > Game.HEIGHT) {
+			if ((bullets.get(i).getPositionY() > Game.HEIGHT)||(bullets.get(i).getPositionY() < 0)) {
 				bullets.get(i).setMovingDown(true);
 				bullets.get(i).die();
 			}
@@ -358,7 +358,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 			}
 		}
 		for (int i = 0; i < numberOfBullet; i++) {
-			if (bullets2.get(i).getPositionY() < 0) {
+			if ((bullets2.get(i).getPositionY() > Game.HEIGHT)||(bullets2.get(i).getPositionY() < 0)) {
 				bullets2.get(i).setMovingUp(true);
 				bullets2.get(i).die();
 			}
@@ -417,6 +417,7 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 					bullets.get(i).setAlive(true);
 					bullets.get(i).setPosition(invaders.get(x).getPositionX() + invaders.get(x).getWidth() / 2,
 							invaders.get(x).getPositionY());
+
 					bullets.get(i).setMovingDown(true);
 
 				}
@@ -432,12 +433,88 @@ public class Fleet implements checker, moveable, renderable, canShoot {
 					bullets2.get(i).setAlive(true);
 					bullets2.get(i).setPosition(invaders2.get(y).getPositionX() + invaders2.get(y).getWidth() / 2,
 							invaders2.get(y).getPositionY());
+
 					bullets2.get(i).setMovingUp(true);
 				}
 
 			}
 		}
 	}
+	@Override
+	public void shoot_if_player1_dies() {
+
+		if (canAttack) {
+			Random rand = new Random();
+			for (int i = 0; i < numberOfBullet; ++i) {
+				if (!bullets.get(i).isAlive() ) {
+					int x = rand.nextInt(invaders.size());
+					while (!invaders.get(x).isAlive()) {
+						x = rand.nextInt(invaders.size());
+					}
+					bullets.get(i).setAlive(true);
+					bullets.get(i).setPosition(invaders.get(x).getPositionX() + invaders.get(x).getWidth() / 2,
+							invaders.get(x).getPositionY());
+
+					bullets.get(i).setMovingUp(true);
+
+				}
+			}
+
+			Random rand2 = new Random();
+			for (int i = 0; i < numberOfBullet; ++i) {
+				if (!bullets2.get(i).isAlive()) {
+					int y = rand2.nextInt(invaders2.size());
+					while (!invaders2.get(y).isAlive()) {
+						y = rand2.nextInt(invaders2.size());
+					}
+					bullets2.get(i).setAlive(true);
+					bullets2.get(i).setPosition(invaders2.get(y).getPositionX() + invaders2.get(y).getWidth() / 2,
+							invaders2.get(y).getPositionY());
+
+					bullets2.get(i).setMovingUp(true);
+				}
+
+			}
+		}
+	}
+	@Override
+	public void shoot_if_player2_dies() {
+
+		if (canAttack) {
+			Random rand = new Random();
+			for (int i = 0; i < numberOfBullet; ++i) {
+				if (!bullets.get(i).isAlive() ) {
+					int x = rand.nextInt(invaders.size());
+					while (!invaders.get(x).isAlive()) {
+						x = rand.nextInt(invaders.size());
+					}
+					bullets.get(i).setAlive(true);
+					bullets.get(i).setPosition(invaders.get(x).getPositionX() + invaders.get(x).getWidth() / 2,
+							invaders.get(x).getPositionY());
+
+					bullets.get(i).setMovingDown(true);
+
+				}
+			}
+
+			Random rand2 = new Random();
+			for (int i = 0; i < numberOfBullet; ++i) {
+				if (!bullets2.get(i).isAlive()) {
+					int y = rand2.nextInt(invaders2.size());
+					while (!invaders2.get(y).isAlive()) {
+						y = rand2.nextInt(invaders2.size());
+					}
+					bullets2.get(i).setAlive(true);
+					bullets2.get(i).setPosition(invaders2.get(y).getPositionX() + invaders2.get(y).getWidth() / 2,
+							invaders2.get(y).getPositionY());
+
+					bullets2.get(i).setMovingDown(true);
+				}
+
+			}
+		}
+	}
+
 }
 
 
